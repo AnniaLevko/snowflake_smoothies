@@ -18,7 +18,7 @@ st.write(
     """)
 
 
-name_on_order = st.text_input('Name on Smoothie:', key='widget', on_change=clear_text)
+name_on_order = st.text_input('Name on Smoothie:', key='widget')
 my_text = st.session_state.get('my_text', '')
 st.write('The name on your Smoothie will be:', name_on_order)
 
@@ -69,7 +69,7 @@ if ingredient_list:
     time_to_insert = st.button('Submit Order')
     
     if time_to_insert:
-        st.session_state.something = ''
+        clear_text()
         st.session_state['ingredient_list']=[]
         session.sql(my_insert_stmt).collect()
     
