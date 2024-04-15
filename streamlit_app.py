@@ -6,7 +6,7 @@ import pandas as pd
 
 def submit():
     st.session_state.something = st.session_state.name
-    st.session_state.name = ''
+    #st.session_state.name = ''
 
 cnx = st.connection("snowflake")
 session = cnx.session()
@@ -21,8 +21,8 @@ st.write(
 name_on_order = st.text_input('Name on Smoothie:', key='name',on_change=submit)
 st.write('The name on your Smoothie will be:', name_on_order)
 
-if 'something' not in st.session_state:
-    st.session_state.something = ''
+
+ 
 
 
 
@@ -68,6 +68,7 @@ if ingredient_list:
     time_to_insert = st.button('Submit Order')
     
     if time_to_insert:
+        st.session_state.something = ''
         st.session_state['ingredient_list']=[]
         session.sql(my_insert_stmt).collect()
     
