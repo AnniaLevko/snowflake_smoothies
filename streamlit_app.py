@@ -4,9 +4,9 @@ from snowflake.snowpark.functions import col
 import requests
 import pandas as pd
 
-def submit():
-    st.session_state.something = st.session_state.name
-    st.session_state.name = ''
+def clear_text():
+    st.session_state.my_text = st.session_state.widget
+    st.session_state.widget = ""
 
 cnx = st.connection("snowflake")
 session = cnx.session()
@@ -18,7 +18,8 @@ st.write(
     """)
 
 
-name_on_order = st.text_input('Name on Smoothie:', key='name',on_change=submit)
+name_on_order = st.text_input('Name on Smoothie:', key='widget', on_change=clear_text)
+my_text = st.session_state.get('my_text', '')
 st.write('The name on your Smoothie will be:', name_on_order)
 
 
