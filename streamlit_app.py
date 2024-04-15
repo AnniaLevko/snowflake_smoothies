@@ -60,7 +60,7 @@ if ingredient_list:
     time_to_insert = st.button('Submit Order')
     
     if time_to_insert:
-        st.session_state.multiselect = []
+        st.session_state['ingredient_list']=[]
         session.sql(my_insert_stmt).collect()
     
         st.success('Your smoothie is ordered, ' + name_on_order + '!')
