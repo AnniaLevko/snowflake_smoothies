@@ -6,7 +6,7 @@ import pandas as pd
 
 def submit():
     st.session_state.something = st.session_state.name
-    st.session_state.widget = ''
+    st.session_state.name = ''
 
 cnx = st.connection("snowflake")
 session = cnx.session()
