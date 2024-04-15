@@ -14,7 +14,7 @@ st.write(
     """)
 
 
-name_on_order = st.text_input('Name on Smoothie:')
+name_on_order = st.text_input('Your Name','Name on Smoothie:')
 st.write('The name on your Smoothie will be:', name_on_order)
 
 
