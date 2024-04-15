@@ -28,8 +28,9 @@ ingredient_list = st.multiselect('Choose up to 5 ingredients', my_dataframe, max
 if ingredient_list:
     ingredient_string = ''
     for fruit_chosen in ingredient_list:
+        st.subheader(fruit_chosen + 'Nutrition Information')
         ##API call
-        fruityvice_response = requests.get("https://fruityvice.com/api/fruit/watermelon")
+        fruityvice_response = requests.get(f"https://fruityvice.com/api/fruit/{fruit_chosen}")
         fv_df = st.dataframe(data=fruityvice_response.json(), use_container_width = True)
 
         ingredient_string += fruit_chosen + ' '
