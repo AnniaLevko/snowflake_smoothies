@@ -28,6 +28,10 @@ ingredient_list = st.multiselect('Choose up to 5 ingredients', my_dataframe, max
 if ingredient_list:
     ingredient_string = ''
     for fruit_chosen in ingredient_list:
+        ##API call
+        fruityvice_response = requests.get("https://fruityvice.com/api/fruit/watermelon")
+        fv_df = st.dataframe(data=fruityvice_response.json(), use_container_width = True)
+
         ingredient_string += fruit_chosen + ' '
 
     #st.write(ingredient_string)
@@ -46,6 +50,3 @@ if ingredient_list:
         st.success('Your smoothie is ordered, ' + name_on_order + '!')
 
 
-fruityvice_response = requests.get("https://fruityvice.com/api/fruit/watermelon")
-#st.text(fruityvice_response.json())
-fv_df = st.dataframe(data=fruityvice_response.json(), use_container_width = True)
