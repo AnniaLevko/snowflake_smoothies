@@ -4,9 +4,6 @@ from snowflake.snowpark.functions import col
 import requests
 import pandas as pd
 
-def clear_text():
-    st.session_state.my_text = st.session_state.widget
-    st.session_state.widget = ""
 
 cnx = st.connection("snowflake")
 session = cnx.session()
@@ -18,8 +15,8 @@ st.write(
     """)
 
 
-name_on_order = st.text_input('Name on Smoothie:', key='widget')
-my_text = st.session_state.get('my_text', '')
+name_on_order = st.text_input('Name on Smoothie:')
+
 st.write('The name on your Smoothie will be:', name_on_order)
 
 
@@ -69,8 +66,7 @@ if ingredient_list:
     time_to_insert = st.button('Submit Order')
     
     if time_to_insert:
-        clear_text()
-        st.session_state['ingredient_list']=[]
+       
         session.sql(my_insert_stmt).collect()
     
         st.success('Your smoothie is ordered, ' + name_on_order + '!')
